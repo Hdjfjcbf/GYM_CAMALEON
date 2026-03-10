@@ -2,17 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GYM UPA | Registro Elite</title>
+    <title>GYM UPA | Acceso Elite</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --carmesi-full: #ff0015; 
-            --carmesi-base: #8b0000;
-            --verde-sexy: #004d26;
+            --accent-blue: #008cff; 
+            --accent-silver: #c0c0c0;
+            --dark-glass: rgba(0, 10, 20, 0.4);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             background: #000;
             height: 100vh;
@@ -22,26 +20,19 @@
             overflow: hidden;
             font-family: 'Inter', sans-serif;
         }
-
-        canvas {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: -1;
-        }
-
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
         .glass-card {
-            background: rgba(20, 0, 2, 0.01);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: var(--dark-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 50px;
             width: 95%;
             max-width: 480px;
             padding: 4rem;
             text-align: center;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 0, 21, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 140, 255, 0.2);
         }
-
         .brand h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 4.2rem;
@@ -52,34 +43,30 @@
             margin-bottom: 10px;
         }
         .brand h1 span {
-            color: var(--carmesi-full);
-            text-shadow: 0 0 20px rgba(255, 0, 21, 0.6);
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px rgba(0, 140, 255, 0.6);
         }
-
         .brand p {
-            color: var(--verde-sexy);
+            color: var(--accent-silver);
             font-size: 1rem;
             letter-spacing: 8px;
             margin-bottom: 3.5rem;
             text-transform: uppercase;
             font-weight: 800;
-            text-shadow: 0 0 10px rgba(0, 77, 38, 0.8);
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
         }
-
         .form-group { margin-bottom: 2rem; text-align: left; }
-
         .form-group label {
             display: block;
             font-size: 0.9rem;
-            color: var(--carmesi-full);
+            color: var(--accent-blue);
             margin-bottom: 12px;
             font-weight: 800;
         }
-
         .form-group input {
             width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--carmesi-full); 
+            background: rgba(0, 5, 10, 0.7);
+            border: 1px solid var(--accent-blue); 
             padding: 20px;
             border-radius: 20px;
             color: #fff;
@@ -87,15 +74,22 @@
             outline: none;
             transition: 0.3s;
         }
-
         .form-group input:focus {
-            box-shadow: 0 0 20px rgba(255, 0, 21, 0.4);
-            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px rgba(0, 140, 255, 0.4);
+            background: rgba(0, 10, 20, 0.9);
         }
-
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            color: #fff;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
         .btn-elite {
             width: 100%;
-            background: var(--carmesi-full);
+            background: var(--accent-blue);
             color: #fff;
             padding: 24px;
             border-radius: 20px;
@@ -104,26 +98,28 @@
             border: none;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(255, 0, 21, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 140, 255, 0.3);
             transition: 0.3s;
         }
-
         .btn-elite:hover {
-            background: var(--carmesi-base);
+            background: #0056b3;
             transform: scale(1.02);
         }
-
-        .login-link {
+        .extra-links {
             margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .extra-links a {
             color: rgba(255,255,255,0.5);
+            text-decoration: none;
             font-size: 0.8rem;
             font-weight: 600;
+            transition: 0.3s;
         }
-
-        .login-link a {
-            color: var(--carmesi-full);
-            text-decoration: none;
-            font-weight: 800;
+        .extra-links a:hover {
+            color: var(--accent-blue);
         }
     </style>
 </head>
@@ -133,26 +129,28 @@
     <div class="glass-card">
         <div class="brand">
             <h1>GYM <span>UPA</span></h1>
-            <p>Registro Elite</p>
+            <p>Acceso Socios</p>
         </div>
-        <form action="../../api/registro_proceso.php" method="POST">
+        <form action="../../api/login_proceso.php" method="POST">
             <div class="form-group">
-                <label>NOMBRE COMPLETO</label>
-                <input type="text" name="nombre" placeholder="..." required>
-            </div>
-            <div class="form-group">
-                <label>CORREO INSTITUCIONAL</label>
-                <input type="email" name="correo" placeholder="..." required>
+                <label>CORREO</label>
+                <input type="email" name="correo" placeholder="tu@correo.com" required>
             </div>
             <div class="form-group">
                 <label>CONTRASEÑA</label>
                 <input type="password" name="password" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-elite">CREAR CUENTA</button>
+            
+            <label class="remember-me">
+                <input type="checkbox" name="recordar"> MANTENER SESIÓN ACTIVA
+            </label>
+
+            <button type="submit" class="btn-elite">ENTRAR AL GYM</button>
         </form>
 
-        <div class="login-link">
-            ¿YA ERES SOCIO? <a href="login.php">INICIA SESIÓN AQUÍ</a>
+        <div class="extra-links">
+            <a href="recuperar.php">¿OLVIDASTE TU CONTRASEÑA?</a>
+            <a href="registro.php">¿NO TIENES CUENTA? <span style="color: var(--accent-blue); font-weight: 800;">REGÍSTRATE</span></a>
         </div>
     </div>
 
@@ -193,14 +191,14 @@
                 vec2 p = (uv * 2.0 - 1.0) * 1.5;
                 p.x *= uResolution.x / uResolution.y;
 
-                float t = uTime * 0.15;
+                float t = uTime * 0.12; 
                 vec2 q = vec2(fbm(p + t * 0.1), fbm(p + vec2(5.2, 1.3)));
                 vec2 r = vec2(fbm(p + 4.0 * q + vec2(1.7, 9.2) + t), fbm(p + 4.0 * q + vec2(8.3, 2.8) + t));
                 float f = fbm(p + 4.0 * r);
 
-                vec3 col = mix(vec3(0.0), vec3(0.8, 0.0, 0.05), clamp((f*f)*4.0, 0.0, 1.0));
-                col += 0.6 * pow(f, 3.0) * vec3(1.0, 0.0, 0.1);
-                col *= 1.5;
+                vec3 col = mix(vec3(0.0), vec3(0.0, 0.1, 0.4), clamp((f*f)*4.0, 0.0, 1.0));
+                col += 0.5 * pow(f, 3.0) * vec3(0.5, 0.8, 1.0);
+                col *= 1.2;
 
                 gl_FragColor = vec4(col, 1.0);
             }

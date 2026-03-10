@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GYM UPA | Liquid Glass Elite</title>
+    <title>GYM UPA | Registro Elite</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,10 +29,9 @@
             z-index: -1;
         }
 
-        /* VIDRIO CON DISTORSIÓN DE ONDAS */
         .glass-card {
-            background: rgba(20, 0, 2, 0.01); /* Transparencia casi total */
-            backdrop-filter: blur(3px); /* Subimos el blur para distorsionar las ondas */
+            background: rgba(20, 0, 2, 0.01);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 50px;
             width: 95%;
@@ -40,7 +39,7 @@
             padding: 4rem;
             text-align: center;
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 0, 21, 0.05); /* Brillo carmesí casi imperceptible en el borde */
+            border: 1px solid rgba(255, 0, 21, 0.1);
         }
 
         .brand h1 {
@@ -77,7 +76,6 @@
             font-weight: 800;
         }
 
-        /* RECUADROS ROJOS POTENTES */
         .form-group input {
             width: 100%;
             background: rgba(0, 0, 0, 0.6);
@@ -114,6 +112,19 @@
             background: var(--carmesi-base);
             transform: scale(1.02);
         }
+
+        .login-link {
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .login-link a {
+            color: var(--carmesi-full);
+            text-decoration: none;
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
@@ -124,21 +135,25 @@
             <h1>GYM <span>UPA</span></h1>
             <p>Registro Elite</p>
         </div>
-        <form action="#" method="POST">
+        <form action="../../api/registro_proceso.php" method="POST">
             <div class="form-group">
                 <label>NOMBRE COMPLETO</label>
-                <input type="text" placeholder="..." required>
+                <input type="text" name="nombre" placeholder="..." required>
             </div>
             <div class="form-group">
                 <label>CORREO INSTITUCIONAL</label>
-                <input type="email" placeholder="..." required>
+                <input type="email" name="correo" placeholder="..." required>
             </div>
             <div class="form-group">
                 <label>CONTRASEÑA</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" name="password" placeholder="••••••••" required>
             </div>
             <button type="submit" class="btn-elite">CREAR CUENTA</button>
         </form>
+
+        <div class="login-link">
+            ¿YA ERES SOCIO? <a href="login.php">INICIA SESIÓN AQUÍ</a>
+        </div>
     </div>
 
     <script type="module">
